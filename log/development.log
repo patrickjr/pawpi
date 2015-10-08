@@ -1,0 +1,2245 @@
+  [1m[36m (9.9ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (34.1ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateUsers (20150605052810)
+  [1m[35m (6.1ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150605052810')
+  [1m[36m (3.1ms)[0m  [1mCOMMIT[0m
+Migrating to AddIndexToUsersEmail (20150605192849)
+  [1m[35m (28.1ms)[0m  CREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) 
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150605192849')
+  [1m[36m (3.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddIndexToUsersName (20150605204652)
+  [1m[35m (27.3ms)[0m  CREATE UNIQUE INDEX `index_users_on_name`  ON `users` (`name`) 
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150605204652')
+  [1m[36m (3.9ms)[0m  [1mCOMMIT[0m
+Migrating to AddPasswordDigestToUsers (20150605205439)
+  [1m[35m (18.0ms)[0m  ALTER TABLE `users` ADD `password_digest` varchar(255)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150605205439')
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePets (20150608175045)
+  [1m[35m (5.9ms)[0m  CREATE TABLE `pets` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `type_id` int(11), `user_id` int(11), `breed` varchar(255), `zipcode` int(11), `age` int(11), `sex` varchar(255), `description` varchar(255), `is_reported` tinyint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150608175045')
+  [1m[36m (2.1ms)[0m  [1mCOMMIT[0m
+Migrating to AddRememberDigestToUsers (20150610175342)
+  [1m[35m (12.6ms)[0m  ALTER TABLE `users` ADD `remember_digest` varchar(255)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150610175342')
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+Migrating to AddActivationToUsers (20150610215626)
+  [1m[35m (10.5ms)[0m  ALTER TABLE `users` ADD `activation_digest` varchar(255)
+  [1m[36m (12.7ms)[0m  [1mALTER TABLE `users` ADD `activated` tinyint(1)[0m
+  [1m[35m (11.1ms)[0m  ALTER TABLE `users` ADD `activated_at` datetime
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150610215626')
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pawpi2_0_development'
+  AND fk.table_name = 'pets'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `pets`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pawpi2_0_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:05:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (116.4ms)
+  Rendered shared/_nav_links.html.erb (4.4ms)
+  Rendered layouts/_header.html.erb (12.1ms)
+  Rendered shared/_error_messages.html.erb (1.6ms)
+  Rendered users/_new.html.erb (18.7ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (3.8ms)
+  Rendered layouts/_footer.html.erb (23.7ms)
+Completed 200 OK in 1370ms (Views: 1352.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/account_activations.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.self-a8cf9fef29bf681a1e4542153f35e4ea7c6868a018f293dae4415d60c43939e1.css?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.min.self-2c354d7c0179bd35563b93633b23ac5fb07c67d531d40a75695bacbd0eadb799.css?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/leebc.self-f710397e0e12940a776d9daf45af36229b385953a26f73551e664adbd5cb233f.css?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-688b9c13f15ecb109c6c96936f3a0d92ed88797ea4de49853b8c0c10aa0fb114.css?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/account.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/account_activations.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/accounts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/animallisting.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/animallistings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.self-d4f9348957de263ec7f39a99d4d7bf6109b3d389acc6bd22a890f7d0e9b02ee5.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/generic.self-329a3bfbc2b0ff0fdbe9c64592e6c94b5b00dee958bdfd074d2f34d03d19c021.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery/jquery.self-f122fcda7b3d039af154bb8a06781aeabb46fd547d77aca154d9efd46a5f0e1f.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/leebc.self-8c83700c80cb9db96681b1d763c9b7fe189895074ea3a2f3d33c4e43c3d09c26.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/populateDiv.self-c6959264e0b737d11124deec87317f60647c150d4b62e637aa95e18eeb0d656c.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/products.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/registrations.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-ae61d81d64f35e9e4ef3aaa9127d44a7d087c17f078a414b9efe00cdf1fe522b.js?body=1" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pawpiwallpaper-5739fd4a9003ff9b13d307f8960f94f7c94fd7fc3c7e769bc52bc26a28ce1ec7.jpg" for 99.6.129.76 at 2015-06-11 03:05:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:05:45 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (5.2ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:05:51 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.3ms)
+  Rendered shared/_nav_links.html.erb (1.1ms)
+  Rendered layouts/_header.html.erb (5.0ms)
+  Rendered users/_new.html.erb (3.4ms)
+  Rendered layouts/_footer.html.erb (5.6ms)
+Completed 500 Internal Server Error in 108ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992963646340'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (9.6ms)
+
+
+Started GET "/register" for 99.6.129.76 at 2015-06-11 03:06:09 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#new as JS
+  Rendered users/new.html.erb within layouts/application (2.2ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.8ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (3.7ms)
+Completed 200 OK in 80ms (Views: 79.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 99.6.129.76 at 2015-06-11 03:06:11 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AIJ1bDHSOZwW1zpNTg7BZoWV/sGIHFZSZKf45bNk18+Qtbm0MlEyOjdzLM7CvIjP39xwTknxblCe3dDir8dubQ==", "user"=>{"name"=>"", "email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM `users` WHERE `users`.`name` = '' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM `users` WHERE `users`.`email` = '' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  Rendered shared/_error_messages.html.erb (3.4ms)
+  Rendered users/create.js.erb (4.4ms)
+Completed 200 OK in 23ms (Views: 5.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:06:13 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.1ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (3.8ms)
+  Rendered users/_new.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (4.4ms)
+Completed 500 Internal Server Error in 93ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992963646340'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (9.2ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:07:01 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.6ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.0ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (3.7ms)
+Completed 200 OK in 90ms (Views: 89.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:07:02 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.9ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:07:06 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (3.4ms)
+  Rendered users/_new.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (4.1ms)
+Completed 500 Internal Server Error in 84ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992746821860'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (12.7ms)
+
+
+Started GET "/register" for 99.6.129.76 at 2015-06-11 03:07:08 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#new as JS
+  Rendered users/new.html.erb within layouts/application (1.9ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.7ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (3.5ms)
+Completed 200 OK in 83ms (Views: 82.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 99.6.129.76 at 2015-06-11 03:07:37 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4lSUxCEjqcxR1pclbsrsNnO91K+4/5RTZYX//WFK6apyY1gcIqCianBygabieKWfKfRaIHkSrFGf/9f6felQCA==", "user"=>{"name"=>"patrick", "email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM `users` WHERE `users`.`name` = 'patrick' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`name`, `email`, `password_digest`, `created_at`, `updated_at`, `activation_digest`) VALUES ('patrick', 'leebochang@gmail.com', '$2a$10$ISGNRu2X9cTiwhjHjkZbSOxbpz/5wcHg1NJOkCcZJtxgbFpdVgqwa', '2015-06-11 03:07:37', '2015-06-11 03:07:37', '$2a$10$KsR3MmZXEyNOyqMJamJh6eo3fMhx70Cb6F.sC7vu1NpXKkpcxry4a')[0m
+  [1m[35m (3.1ms)[0m  COMMIT
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered shared/_nav_links.html.erb (8.0ms)
+  Rendered users/create.js.erb (8.8ms)
+Completed 200 OK in 231ms (Views: 8.8ms | ActiveRecord: 4.9ms)
+
+
+Started DELETE "/logout" for 99.6.129.76 at 2015-06-11 03:07:50 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"4lSUxCEjqcxR1pclbsrsNnO91K+4/5RTZYX//WFK6apyY1gcIqCianBygabieKWfKfRaIHkSrFGf/9f6felQCA=="}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Redirected to http://pawpi.com/
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:07:50 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.8ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.4ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (4.4ms)
+Completed 200 OK in 84ms (Views: 83.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:07:51 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.8ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:07:51 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (3.5ms)
+  Rendered users/_new.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (4.3ms)
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992746821860'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (8.9ms)
+
+
+Started POST "/login" for 99.6.129.76 at 2015-06-11 03:07:54 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7QILOOAZ4VRH4I4YmisKbiBgG2bf8GMjq62ZZ2WYzCd9Ncfg45rq8mZEmJsWmUPHeimV6R4dWyFR17FgeTt1hQ==", "session"=>{"email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1[0m
+  Rendered shared/_error_login.html.erb (0.4ms)
+  Rendered sessions/create.js.erb (1.4ms)
+Completed 200 OK in 72ms (Views: 2.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:08:02 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (3.7ms)
+  Rendered users/_new.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (4.5ms)
+Completed 500 Internal Server Error in 97ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992746821860'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.8ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (10.3ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:09:02 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (3.1ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (4.0ms)
+Completed 200 OK in 86ms (Views: 85.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:09:02 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.7ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.7ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.0ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (3.7ms)
+Completed 200 OK in 86ms (Views: 85.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/account_activations.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.self-a8cf9fef29bf681a1e4542153f35e4ea7c6868a018f293dae4415d60c43939e1.css?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/leebc.self-f710397e0e12940a776d9daf45af36229b385953a26f73551e664adbd5cb233f.css?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.min.self-2c354d7c0179bd35563b93633b23ac5fb07c67d531d40a75695bacbd0eadb799.css?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (3.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+
+
+Started GET "/assets/application.self-688b9c13f15ecb109c6c96936f3a0d92ed88797ea4de49853b8c0c10aa0fb114.css?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/account.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/account_activations.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/accounts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/animallisting.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/animallistings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:41 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.self-d4f9348957de263ec7f39a99d4d7bf6109b3d389acc6bd22a890f7d0e9b02ee5.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/generic.self-329a3bfbc2b0ff0fdbe9c64592e6c94b5b00dee958bdfd074d2f34d03d19c021.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery/jquery.self-f122fcda7b3d039af154bb8a06781aeabb46fd547d77aca154d9efd46a5f0e1f.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/leebc.self-8c83700c80cb9db96681b1d763c9b7fe189895074ea3a2f3d33c4e43c3d09c26.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/populateDiv.self-c6959264e0b737d11124deec87317f60647c150d4b62e637aa95e18eeb0d656c.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/products.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/registrations.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-ae61d81d64f35e9e4ef3aaa9127d44a7d087c17f078a414b9efe00cdf1fe522b.js?body=1" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pawpiwallpaper-5739fd4a9003ff9b13d307f8960f94f7c94fd7fc3c7e769bc52bc26a28ce1ec7.jpg" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:09:42 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.8ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:09:43 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (3.9ms)
+  Rendered shared/_nav_links.html.erb (1.1ms)
+  Rendered layouts/_header.html.erb (3.2ms)
+  Rendered shared/_error_messages.html.erb (0.4ms)
+  Rendered users/_new.html.erb (2.9ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (5.8ms)
+Completed 200 OK in 89ms (Views: 88.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:09:44 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.5ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.2ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (4.3ms)
+Completed 200 OK in 81ms (Views: 80.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register" for 99.6.129.76 at 2015-06-11 03:10:01 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#new as JS
+  Rendered users/new.html.erb within layouts/application (1.7ms)
+  Rendered shared/_nav_links.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (1.9ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.7ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (3.4ms)
+Completed 200 OK in 80ms (Views: 79.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:10:03 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (3.5ms)
+  Rendered users/_new.html.erb (2.7ms)
+  Rendered layouts/_footer.html.erb (4.4ms)
+Completed 500 Internal Server Error in 82ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992751728620'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (9.9ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:10:11 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (3.7ms)
+  Rendered users/_new.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (4.1ms)
+Completed 500 Internal Server Error in 89ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992751728620'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (9.6ms)
+
+
+Started GET "/register" for 99.6.129.76 at 2015-06-11 03:10:16 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#new as JS
+  Rendered users/new.html.erb within layouts/application (1.6ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.7ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (3.4ms)
+Completed 200 OK in 85ms (Views: 84.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:12:04 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.6ms)
+  Rendered shared/_nav_links.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (3.9ms)
+Completed 200 OK in 83ms (Views: 82.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:12:04 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.8ms)
+
+
+Started GET "/account_activations/1/$2a$10$KsR3MmZXEyNOyqMJamJh6eo3fMhx70Cb6F.sC7vu1NpXKkpcxry4a" for 99.6.129.76 at 2015-06-11 03:12:51 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [GET] "/account_activations/1/$2a$10$KsR3MmZXEyNOyqMJamJh6eo3fMhx70Cb6F.sC7vu1NpXKkpcxry4a"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:149:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.9ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (21.6ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:13:27 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.6ms)
+
+
+Started GET "/account_activations/fFb_F94mgQtmlSvRFGsITw/edit?email=patrick%leebochang@gmail.com" for 99.6.129.76 at 2015-06-11 03:15:31 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::BadRequest (Invalid query parameters: invalid %-encoding (patrick%leebochang@gmail.com)):
+  rack (1.6.1) lib/rack/utils.rb:122:in `rescue in parse_nested_query'
+  rack (1.6.1) lib/rack/utils.rb:112:in `parse_nested_query'
+  rack (1.6.1) lib/rack/request.rb:369:in `parse_query'
+  actionpack (4.2.1) lib/action_dispatch/http/request.rb:339:in `parse_query'
+  rack (1.6.1) lib/rack/request.rb:191:in `GET'
+  actionpack (4.2.1) lib/action_dispatch/http/request.rb:300:in `GET'
+  actionpack (4.2.1) lib/action_dispatch/http/parameters.rb:14:in `parameters'
+  actionpack (4.2.1) lib/action_dispatch/http/filter_parameters.rb:37:in `filtered_parameters'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:22:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:149:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (5.7ms)
+
+
+Started GET "/account_activations/fFb_F94mgQtmlSvRFGsITw/edit?email=patrick%leebochang@gmail.com" for 99.6.129.76 at 2015-06-11 03:15:45 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::BadRequest (Invalid query parameters: invalid %-encoding (patrick%leebochang@gmail.com)):
+  rack (1.6.1) lib/rack/utils.rb:122:in `rescue in parse_nested_query'
+  rack (1.6.1) lib/rack/utils.rb:112:in `parse_nested_query'
+  rack (1.6.1) lib/rack/request.rb:369:in `parse_query'
+  actionpack (4.2.1) lib/action_dispatch/http/request.rb:339:in `parse_query'
+  rack (1.6.1) lib/rack/request.rb:191:in `GET'
+  actionpack (4.2.1) lib/action_dispatch/http/request.rb:300:in `GET'
+  actionpack (4.2.1) lib/action_dispatch/http/parameters.rb:14:in `parameters'
+  actionpack (4.2.1) lib/action_dispatch/http/filter_parameters.rb:37:in `filtered_parameters'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:22:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:149:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (5.2ms)
+
+
+Started GET "/account_activations/fFb_F94mgQtmlSvRFGsITw/edit?email=patrick%40leebochang@gmail.com" for 99.6.129.76 at 2015-06-11 03:15:49 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by AccountActivationsController#edit as HTML
+  Parameters: {"email"=>"patrick@leebochang@gmail.com", "id"=>"fFb_F94mgQtmlSvRFGsITw"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`email` = 'patrick@leebochang@gmail.com' LIMIT 1
+Redirected to http://pawpi.com/
+Completed 302 Found in 1ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:15:49 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.9ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.0ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (3.8ms)
+Completed 200 OK in 89ms (Views: 88.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:15:49 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.6ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:15:51 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.8ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.0ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (4.0ms)
+Completed 200 OK in 81ms (Views: 80.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:15:52 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (3.4ms)
+  Rendered users/_new.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (3.9ms)
+Completed 500 Internal Server Error in 85ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992751728620'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (9.3ms)
+
+
+Started POST "/login" for 99.6.129.76 at 2015-06-11 03:16:00 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jlI6xSTkZ6wdNZvZ0bbkW1A3wmvFxa/6ITuSDnmdmtoeZfYdJ2dsCjyRjVpdBK3yCn5M5AQol/jbQboJZT4jeA==", "session"=>{"email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1[0m
+  Rendered shared/_error_login.html.erb (0.1ms)
+  Rendered sessions/create.js.erb (0.7ms)
+Completed 200 OK in 73ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/login" for 99.6.129.76 at 2015-06-11 03:16:02 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jlI6xSTkZ6wdNZvZ0bbkW1A3wmvFxa/6ITuSDnmdmtoeZfYdJ2dsCjyRjVpdBK3yCn5M5AQol/jbQboJZT4jeA==", "session"=>{"email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Log In"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1
+  Rendered shared/_error_login.html.erb (0.1ms)
+  Rendered sessions/create.js.erb (0.6ms)
+Completed 200 OK in 70ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/login" for 99.6.129.76 at 2015-06-11 03:16:06 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jlI6xSTkZ6wdNZvZ0bbkW1A3wmvFxa/6ITuSDnmdmtoeZfYdJ2dsCjyRjVpdBK3yCn5M5AQol/jbQboJZT4jeA==", "session"=>{"email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1[0m
+  Rendered shared/_error_login.html.erb (0.1ms)
+  Rendered sessions/create.js.erb (0.5ms)
+Completed 200 OK in 72ms (Views: 1.6ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/login" for 99.6.129.76 at 2015-06-11 03:16:07 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jlI6xSTkZ6wdNZvZ0bbkW1A3wmvFxa/6ITuSDnmdmtoeZfYdJ2dsCjyRjVpdBK3yCn5M5AQol/jbQboJZT4jeA==", "session"=>{"email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Log In"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1
+  Rendered shared/_error_login.html.erb (0.1ms)
+  Rendered sessions/create.js.erb (0.5ms)
+Completed 200 OK in 73ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:20:49 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.9ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.9ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (3.7ms)
+Completed 200 OK in 78ms (Views: 77.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:20:50 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.6ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:20:51 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (3.6ms)
+  Rendered users/_new.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (4.4ms)
+Completed 500 Internal Server Error in 91ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992751728620'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (9.5ms)
+
+
+Started POST "/login" for 99.6.129.76 at 2015-06-11 03:20:52 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mIwvE6OcNfBczgH2XksS9a2SwF62x+xuFQtBD8wgqf0Iu+PLoB8+Vn1qF3XS+Vtc99tO0Xcq1GzvcWkI0IMQXw==", "session"=>{"email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  Rendered shared/_nav_links.html.erb (0.2ms)
+  Rendered sessions/create.js.erb (1.3ms)
+Completed 200 OK in 75ms (Views: 2.2ms | ActiveRecord: 0.7ms)
+
+
+Started DELETE "/logout" for 99.6.129.76 at 2015-06-11 03:20:54 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"mIwvE6OcNfBczgH2XksS9a2SwF62x+xuFQtBD8wgqf0Iu+PLoB8+Vn1qF3XS+Vtc99tO0Xcq1GzvcWkI0IMQXw=="}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://pawpi.com/
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:20:54 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.8ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.9ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (3.7ms)
+Completed 200 OK in 78ms (Views: 77.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:20:54 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.5ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:20:55 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (3.5ms)
+  Rendered users/_new.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (4.2ms)
+Completed 500 Internal Server Error in 89ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992751728620'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (9.1ms)
+
+
+Started POST "/login" for 99.6.129.76 at 2015-06-11 03:20:56 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0GueYqtnJ1nr260AYtHfWStsDte3R48U1yORrNxpRoVAXFK6qOQs/8p/u4PuY5bwcSWAWHaqtxYtWbmrwMr/Jw==", "session"=>{"email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Log In"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE `users` SET `remember_digest` = '$2a$10$.MU9cViTbVwmWXEwNcLI9OvddEtu9sRT6a.VTohUlx2sur6wqDEwy', `updated_at` = '2015-06-11 03:20:57' WHERE `users`.`id` = 1
+  [1m[36m (3.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  Rendered shared/_nav_links.html.erb (0.2ms)
+  Rendered sessions/create.js.erb (1.3ms)
+Completed 200 OK in 149ms (Views: 2.3ms | ActiveRecord: 4.2ms)
+
+
+Started DELETE "/logout" for 99.6.129.76 at 2015-06-11 03:20:58 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"0GueYqtnJ1nr260AYtHfWStsDte3R48U1yORrNxpRoVAXFK6qOQs/8p/u4PuY5bwcSWAWHaqtxYtWbmrwMr/Jw=="}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE `users` SET `remember_digest` = NULL, `updated_at` = '2015-06-11 03:20:58' WHERE `users`.`id` = 1[0m
+  [1m[35m (2.6ms)[0m  COMMIT
+Redirected to http://pawpi.com/
+Completed 302 Found in 6ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:20:58 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.7ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.8ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (3.6ms)
+Completed 200 OK in 83ms (Views: 82.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:20:58 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.4ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:20:59 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (3.7ms)
+  Rendered users/_new.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (4.5ms)
+Completed 500 Internal Server Error in 84ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992751728620'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (9.6ms)
+
+
+Started POST "/login" for 99.6.129.76 at 2015-06-11 03:21:00 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9m7pROe7CPawZVQVfVkDB8C/FdiDXKgi+l9QQSANx5xmWSWc5DgDUJHBQpbx60qumvabV0KxkCAAJXhGPK5+Pg==", "session"=>{"email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  Rendered shared/_nav_links.html.erb (0.2ms)
+  Rendered sessions/create.js.erb (1.4ms)
+Completed 200 OK in 76ms (Views: 2.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:21:02 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (3.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered shared/_nav_links.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.0ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (4.1ms)
+Completed 200 OK in 87ms (Views: 86.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:21:03 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.7ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  Rendered shared/_nav_links.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.9ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (4.0ms)
+Completed 200 OK in 82ms (Views: 81.0ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/logout" for 99.6.129.76 at 2015-06-11 03:21:09 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"/3qycZWMiVE2kg7ufN+a2bU2PovNDzwoyIpYk3RfhRdvTX6plg+C9xc2GG3wbdNw73+wBAziBCoy8HCUaPw8tQ=="}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://pawpi.com/
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:21:09 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.7ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.9ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (3.7ms)
+Completed 200 OK in 86ms (Views: 85.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:21:09 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.6ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.9ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (4.0ms)
+Completed 200 OK in 78ms (Views: 77.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/account_activations.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.self-a8cf9fef29bf681a1e4542153f35e4ea7c6868a018f293dae4415d60c43939e1.css?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.min.self-2c354d7c0179bd35563b93633b23ac5fb07c67d531d40a75695bacbd0eadb799.css?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/leebc.self-f710397e0e12940a776d9daf45af36229b385953a26f73551e664adbd5cb233f.css?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-688b9c13f15ecb109c6c96936f3a0d92ed88797ea4de49853b8c0c10aa0fb114.css?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/account.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/account_activations.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/accounts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/animallisting.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/animallistings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.self-d4f9348957de263ec7f39a99d4d7bf6109b3d389acc6bd22a890f7d0e9b02ee5.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/generic.self-329a3bfbc2b0ff0fdbe9c64592e6c94b5b00dee958bdfd074d2f34d03d19c021.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery/jquery.self-f122fcda7b3d039af154bb8a06781aeabb46fd547d77aca154d9efd46a5f0e1f.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/leebc.self-8c83700c80cb9db96681b1d763c9b7fe189895074ea3a2f3d33c4e43c3d09c26.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/populateDiv.self-c6959264e0b737d11124deec87317f60647c150d4b62e637aa95e18eeb0d656c.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/products.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/registrations.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-ae61d81d64f35e9e4ef3aaa9127d44a7d087c17f078a414b9efe00cdf1fe522b.js?body=1" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/logopawpi-a22a7d83e8914565ff1dc4d8f0e651aec1b7565d07952c880a6a639904843e4e.png" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pawpiwallpaper-5739fd4a9003ff9b13d307f8960f94f7c94fd7fc3c7e769bc52bc26a28ce1ec7.jpg" for 99.6.129.76 at 2015-06-11 03:22:35 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:22:36 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (13.0ms)
+
+
+Started GET "/login" for 99.6.129.76 at 2015-06-11 03:22:43 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as JS
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (3.6ms)
+  Rendered users/_new.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (4.1ms)
+Completed 500 Internal Server Error in 81ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992743034980'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992743133320'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992751728620'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.text.erb (9.7ms)
+
+
+Started POST "/login" for 99.6.129.76 at 2015-06-11 03:22:51 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9XH9F5vF+5j7ReCbxsyl1iOk0gz3XhhwOXxK3Gw8fNQGkxuUge1Sqp5Ljr5GT4yPnX4eyfrhI//tsS3vpsFtwQ==", "session"=>{"email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1
+  Rendered shared/_error_login.html.erb (0.1ms)
+  Rendered sessions/create.js.erb (0.6ms)
+Completed 200 OK in 73ms (Views: 1.8ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/login" for 99.6.129.76 at 2015-06-11 03:23:01 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9XH9F5vF+5j7ReCbxsyl1iOk0gz3XhhwOXxK3Gw8fNQGkxuUge1Sqp5Ljr5GT4yPnX4eyfrhI//tsS3vpsFtwQ==", "session"=>{"email"=>"leebochang@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'leebochang@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  Rendered shared/_nav_links.html.erb (0.2ms)
+  Rendered sessions/create.js.erb (1.2ms)
+Completed 200 OK in 75ms (Views: 2.3ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/logout" for 99.6.129.76 at 2015-06-11 03:23:06 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"9XH9F5vF+5j7ReCbxsyl1iOk0gz3XhhwOXxK3Gw8fNQGkxuUge1Sqp5Ljr5GT4yPnX4eyfrhI//tsS3vpsFtwQ=="}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://pawpi.com/
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 99.6.129.76 at 2015-06-11 03:23:06 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.8ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (2.0ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (4.0ms)
+Completed 200 OK in 86ms (Views: 85.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/searching" for 99.6.129.76 at 2015-06-11 03:23:06 +0000
+Cannot render console from 99.6.129.76! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.5ms)
+
+
+Started GET "/" for 66.249.79.138 at 2015-06-11 04:19:37 +0000
+Cannot render console from 66.249.79.138! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PetsController#index as HTML
+  Rendered pets/index.html.erb within layouts/application (2.8ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (1.9ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.9ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (3.6ms)
+Completed 200 OK in 76ms (Views: 75.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 66.249.79.138 at 2015-06-11 04:23:22 +0000
+Cannot render console from 66.249.79.138! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.3ms)
+  Rendered shared/_nav_links.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered users/_new.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (1.6ms)
+Completed 500 Internal Server Error in 81ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1:     
+    2:     <%= form_for(@user, remote: true) do |f| %>
+    3:     <%= render 'shared/error_messages' %>
+    4:       <%= f.label :name , :style=>'text-align:left !important;' %><br>
+    5:       <%= f.text_field :name %><br>
+  app/views/users/_new.html.erb:2:in `_app_views_users__new_html_erb___1998443566943410933_69992751880460'
+  app/views/layouts/_footer.html.erb:13:in `_app_views_layouts__footer_html_erb__801580033598158279_69992751870080'
+  app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb__1539457707367217720_69992751728620'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.3ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (28.1ms)
+
+
+Started GET "/register" for 66.249.79.164 at 2015-06-11 04:26:10 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (1.5ms)
+  Rendered shared/_nav_links.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_new.html.erb (1.8ms)
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered sessions/_new.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (3.7ms)
+Completed 200 OK in 77ms (Views: 76.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap.self-a8cf9fef29bf681a1e4542153f35e4ea7c6868a018f293dae4415d60c43939e1.css?body=1" for 66.249.79.164 at 2015-06-11 04:26:49 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.min.self-2c354d7c0179bd35563b93633b23ac5fb07c67d531d40a75695bacbd0eadb799.css?body=1" for 66.249.79.164 at 2015-06-11 04:26:49 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/leebc.self-f710397e0e12940a776d9daf45af36229b385953a26f73551e664adbd5cb233f.css?body=1" for 66.249.79.164 at 2015-06-11 04:26:49 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 66.249.79.164 at 2015-06-11 04:26:50 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/accounts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.138 at 2015-06-11 04:26:51 +0000
+Cannot render console from 66.249.79.138! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-ae61d81d64f35e9e4ef3aaa9127d44a7d087c17f078a414b9efe00cdf1fe522b.js?body=1" for 66.249.79.164 at 2015-06-11 04:26:51 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/account_activations.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.138 at 2015-06-11 04:26:52 +0000
+Cannot render console from 66.249.79.138! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 66.249.79.138 at 2015-06-11 04:26:52 +0000
+Cannot render console from 66.249.79.138! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 66.249.79.164 at 2015-06-11 04:26:53 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.151 at 2015-06-11 04:26:53 +0000
+Cannot render console from 66.249.79.151! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/animallisting.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.164 at 2015-06-11 04:26:54 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/animallistings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.151 at 2015-06-11 04:26:55 +0000
+Cannot render console from 66.249.79.151! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery/jquery.self-f122fcda7b3d039af154bb8a06781aeabb46fd547d77aca154d9efd46a5f0e1f.js?body=1" for 66.249.79.151 at 2015-06-11 04:26:55 +0000
+Cannot render console from 66.249.79.151! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/leebc.self-8c83700c80cb9db96681b1d763c9b7fe189895074ea3a2f3d33c4e43c3d09c26.js?body=1" for 66.249.79.138 at 2015-06-11 04:26:56 +0000
+Cannot render console from 66.249.79.138! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/account_activations.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 66.249.79.164 at 2015-06-11 04:26:57 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/bootstrap.self-d4f9348957de263ec7f39a99d4d7bf6109b3d389acc6bd22a890f7d0e9b02ee5.js?body=1" for 66.249.79.164 at 2015-06-11 04:26:57 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/generic.self-329a3bfbc2b0ff0fdbe9c64592e6c94b5b00dee958bdfd074d2f34d03d19c021.js?body=1" for 66.249.79.164 at 2015-06-11 04:26:58 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.138 at 2015-06-11 04:26:59 +0000
+Cannot render console from 66.249.79.138! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/account.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.151 at 2015-06-11 04:27:00 +0000
+Cannot render console from 66.249.79.151! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 66.249.79.151 at 2015-06-11 04:27:00 +0000
+Cannot render console from 66.249.79.151! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/registrations.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.151 at 2015-06-11 04:27:01 +0000
+Cannot render console from 66.249.79.151! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/populateDiv.self-c6959264e0b737d11124deec87317f60647c150d4b62e637aa95e18eeb0d656c.js?body=1" for 66.249.79.164 at 2015-06-11 04:27:02 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/products.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.151 at 2015-06-11 04:27:03 +0000
+Cannot render console from 66.249.79.151! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.138 at 2015-06-11 04:27:03 +0000
+Cannot render console from 66.249.79.138! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-688b9c13f15ecb109c6c96936f3a0d92ed88797ea4de49853b8c0c10aa0fb114.css?body=1" for 66.249.79.164 at 2015-06-11 04:27:04 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started POST "/searching" for 66.249.79.164 at 2015-06-11 04:27:05 +0000
+Cannot render console from 66.249.79.164! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [POST] "/searching"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:155:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (4.6ms)
+
+
+Started GET "/assets/welcome.self-906fc71698ab1c63e7c837e1dac6ece517d1f0eb79dc3c4cbebf6bf94c420c9f.css?body=1" for 66.249.79.149 at 2015-06-11 05:20:18 +0000
+Cannot render console from 66.249.79.149! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [GET] "/assets/welcome.self-906fc71698ab1c63e7c837e1dac6ece517d1f0eb79dc3c4cbebf6bf94c420c9f.css"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:149:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.9ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (21.1ms)
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 66.249.79.123 at 2015-06-11 05:20:19 +0000
+Cannot render console from 66.249.79.123! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+ActionController::RoutingError (No route matches [GET] "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:29:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  passenger (5.0.8) lib/phusion_passenger/rack/thread_handler_extension.rb:89:in `process_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:149:in `accept_and_process_next_request'
+  passenger (5.0.8) lib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+  passenger (5.0.8) lib/phusion_passenger/request_handler.rb:414:in `block (3 levels) in start_threads'
+  passenger (5.0.8) lib/phusion_passenger/utils.rb:111:in `block in create_thread_and_abort_on_exception'
+
+
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.1ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/ubuntu/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (21.9ms)
+
+
+Started GET "/assets/application.self-a58122cd5ded492dbac2e098dfbec2fa6e5ed40f303a91bd2ea9f222edadf00e.css?body=1" for 66.249.79.149 at 2015-06-11 05:20:20 +0000
+Cannot render console from 66.249.79.149! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 66.249.79.123 at 2015-06-11 05:20:20 +0000
+Cannot render console from 66.249.79.123! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 66.249.79.136 at 2015-06-11 05:20:21 +0000
+Cannot render console from 66.249.79.136! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 66.249.79.123 at 2015-06-11 05:20:21 +0000
+Cannot render console from 66.249.79.123! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36m (13.6ms)[0m  [1mDROP DATABASE IF EXISTS `pawpi2_0_development`[0m
+  [1m[35m (0.2ms)[0m  DROP DATABASE IF EXISTS `pawpi2_0_test`
+  [1m[36m (0.2ms)[0m  [1mCREATE DATABASE `pawpi2_0_development` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`[0m
+  [1m[35m (0.1ms)[0m  CREATE DATABASE `pawpi2_0_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (7.0ms)[0m  [1mCREATE TABLE `pets` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `type_id` int(11), `user_id` int(11), `breed` varchar(255), `zipcode` int(11), `age` int(11), `sex` varchar(255), `description` varchar(255), `is_reported` tinyint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (5.5ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `password_digest` varchar(255), `remember_digest` varchar(255), `activation_digest` varchar(255), `activated` tinyint(1), `activated_at` datetime) ENGINE=InnoDB
+  [1m[36m (29.4ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (28.8ms)[0m  CREATE UNIQUE INDEX `index_users_on_name` USING btree ON `users` (`name`) 
+  [1m[36m (5.7ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (31.3ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (2.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150610215626')
+  [1m[36m (2.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150605205439')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150610175342')
+  [1m[36m (2.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150608175045')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150605052810')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150605204652')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150605192849')
+  [1m[36m (6.2ms)[0m  [1mCREATE TABLE `pets` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `type_id` int(11), `user_id` int(11), `breed` varchar(255), `zipcode` int(11), `age` int(11), `sex` varchar(255), `description` varchar(255), `is_reported` tinyint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (6.1ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `password_digest` varchar(255), `remember_digest` varchar(255), `activation_digest` varchar(255), `activated` tinyint(1), `activated_at` datetime) ENGINE=InnoDB
+  [1m[36m (28.3ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (29.9ms)[0m  CREATE UNIQUE INDEX `index_users_on_name` USING btree ON `users` (`name`) 
+  [1m[36m (4.8ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (29.7ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150610215626')
+  [1m[36m (2.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150605205439')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150610175342')
+  [1m[36m (2.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150608175045')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150605052810')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150605204652')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150605192849')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pawpi2_0_development'
+  AND fk.table_name = 'pets'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `pets`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pawpi2_0_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pawpi2_0_development'
+  AND fk.table_name = 'pets'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `pets`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pawpi2_0_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pawpi2_0_development'
+  AND fk.table_name = 'pets'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `pets`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'pawpi2_0_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+  [1m[36m (11.0ms)[0m  [1mDROP DATABASE IF EXISTS `pawpi2_0_development`[0m
+  [1m[35m (0.2ms)[0m  CREATE DATABASE `pawpi2_0_development` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (5.9ms)[0m  [1mCREATE TABLE `pets` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `type_id` int(11), `user_id` int(11), `breed` varchar(255), `zipcode` int(11), `age` int(11), `sex` varchar(255), `description` varchar(255), `is_reported` tinyint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (5.3ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `password_digest` varchar(255), `remember_digest` varchar(255), `activation_digest` varchar(255), `activated` tinyint(1), `activated_at` datetime) ENGINE=InnoDB
+  [1m[36m (28.4ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) [0m
+  [1m[35m (28.0ms)[0m  CREATE UNIQUE INDEX `index_users_on_name` USING btree ON `users` (`name`) 
+  [1m[36m (5.3ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (28.8ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (2.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150610215626')
+  [1m[36m (2.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150605205439')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150610175342')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150608175045')[0m
+  [1m[35m (2.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150605052810')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150605204652')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150605192849')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
